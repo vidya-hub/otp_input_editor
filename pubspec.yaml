@@ -1,10 +1,10 @@
 name: otp_input_editor
-description: Customizable OTP input Editor
+description: otp_input_editor empowers users to effortlessly edit OTPs from any position within the input field. With customizable features such as adjustable field dimensions, cursor appearance, and styling options, developers have the flexibility to tailor the OTP input experience to their specific requirements.
 version: 0.0.1
-homepage: https://github.com/vidya-hub/otp_input_editor.git
-
+homepage: https://github.com/vidya-hub/otp_input_editor/blob/main/README.md
+repository: https://github.com/vidya-hub/otp_input_editor.git
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.6 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -16,30 +16,3 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 flutter:
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
