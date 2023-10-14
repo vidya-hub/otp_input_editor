@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:otp_input_editor/src/otp_input_controller.dart';
 
 class OtpInputEditor extends StatefulWidget {
   const OtpInputEditor({
@@ -15,6 +16,8 @@ class OtpInputEditor extends StatefulWidget {
     this.cursorHeight = 24,
     this.textInputStyle,
     this.boxDecoration,
+    this.onInitialization,
+    this.obscureText = true,
   });
 
   final int otpLength;
@@ -28,6 +31,8 @@ class OtpInputEditor extends StatefulWidget {
   final double cursorHeight;
   final TextStyle? textInputStyle;
   final BoxDecoration? boxDecoration;
+  final Function(OtpInputController)? onInitialization;
+  final bool obscureText;
 
   @override
   State<OtpInputEditor> createState() => _OtpInputEditorState();
@@ -38,22 +43,32 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
   List<String> tempValues = [];
   List<FocusNode> focusNodes = [];
   List<FocusNode> rawFocusNodes = [];
+  OtpInputController? _otpInputController;
 
   @override
   void initState() {
     setState(() {
       controllers.addAll(
-          List.generate(widget.otpLength, (index) => TextEditingController()));
+        List.generate(
+          widget.otpLength,
+          (index) => TextEditingController(),
+        ),
+      );
+
       focusNodes
           .addAll(List.generate(widget.otpLength, (index) => FocusNode()));
       rawFocusNodes
           .addAll(List.generate(widget.otpLength, (index) => FocusNode()));
       tempValues.addAll(List.generate(widget.otpLength, (index) => ""));
     });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _otpInputController = OtpInputController(controllers: controllers);
+      if (widget.onInitialization != null) {
+        widget.onInitialization!(_otpInputController!);
+      }
+    });
     super.initState();
   }
-
-  int testCounter = 1;
 
   @override
   void dispose() {
@@ -79,7 +94,7 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
           widget.otpLength,
           (index) => Expanded(
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
               decoration: widget.boxDecoration ??
                   BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -102,6 +117,7 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
                     }
                   },
                   child: TextFormField(
+                    obscureText: widget.obscureText,
                     focusNode: focusNodes[index],
                     controller: controllers[index],
                     textAlign: TextAlign.center,
@@ -160,7 +176,6 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
                     style: widget.textInputStyle,
                     decoration: const InputDecoration(
                       counterText: '',
-                      contentPadding: EdgeInsets.all(5.0),
                       border: InputBorder.none,
                     ),
                   ),
@@ -177,6 +192,10 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
     String data = controllers.map((e) => e.text).join();
     if (widget.onOtpChanged != null) {
       widget.onOtpChanged!(data);
+    }
+    if (_otpInputController != null) {
+      _otpInputController!.setOtp = data;
+      setState(() {});
     }
   }
 }
