@@ -1,6 +1,6 @@
 # otp_input_editor
 
-A customizable OTP (One Time Password) input field package for Flutter that allows editing from any position within the OTP text fields.
+A customizable OTP (One Time Password) input field package for Flutter that allows editing from any position within the OTP text fields with Clear and Hide features.
 
 https://github.com/vidya-hub/otp_input_editor/assets/59490902/d266d638-e890-4725-8ea2-0969833776e5
 
