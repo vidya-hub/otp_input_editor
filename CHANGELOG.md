@@ -17,3 +17,7 @@
 ## 0.0.5
 
 - TODO: Added OtpInputController and obscureText field to clear,get and hide OTP fields Data.
+
+## 0.0.6
+
+- TODO: Added video example
