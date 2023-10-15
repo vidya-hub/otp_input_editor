@@ -17,7 +17,7 @@ Add the following line to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  otp_input_editor: ^0.0.5 # Replace with the latest version
+  otp_input_editor: <latest-version> # Replace with the latest version
 ```
 
 Run `flutter pub get` to install the package.
@@ -94,9 +94,9 @@ Use the `OtpInputEditor` widget in your Flutter app, providing the necessary par
 - `onInitialization` (optional): This Callback Gives you the OtpInputController to get more control like clearing and get OTP fields data.
 
 ```dart
-// Define Your own otpController
+  // Define Your own otpController
   OtpInputController? _otpInputController;
-// Assign controller to your local _otpInputController
+  // Assign controller to your local _otpInputController
   onInitialization: (OtpInputController otpInputController) {
     setState(() {
       _otpInputController = otpInputController;
@@ -297,6 +297,14 @@ class _OtpInputFieldState extends State<OtpInputField> {
   }
 }
 
+```
+
+## Integration Tests
+
+- Written Integration Test Cases for the Example Code please use following command to run the example app code test cases
+
+```bash
+  flutter drive --target=test/integration_tests/otp_test.dart --driver=test/test_driver/integration_test.dart
 ```
 
 ## License

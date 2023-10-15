@@ -94,6 +94,7 @@ class _OtpInputFieldState extends State<OtpInputField> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         InkWell(
+          key: const Key("clear-key"),
           onTap: () {
             if (_otpInputController != null) {
               _otpInputController!.clear();
@@ -117,6 +118,7 @@ class _OtpInputFieldState extends State<OtpInputField> {
 
   OtpInputEditor get _getOtpEditor {
     return OtpInputEditor(
+      key: const Key("otp-field"),
       obscureText: !_showOtp,
       otpLength: 6,
       onOtpChanged: (value) {
@@ -184,6 +186,7 @@ class _OtpInputFieldState extends State<OtpInputField> {
         height: 10,
       ),
       Text(
+        key: const Key("otp-value"),
         _otpData,
         style: const TextStyle(
           fontSize: 30,

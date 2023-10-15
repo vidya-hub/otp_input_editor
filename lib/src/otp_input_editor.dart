@@ -117,6 +117,7 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
                     }
                   },
                   child: TextFormField(
+                    key: Key("otp-${index + 1}"),
                     obscureText: widget.obscureText,
                     focusNode: focusNodes[index],
                     controller: controllers[index],
