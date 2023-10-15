@@ -21,3 +21,7 @@
 ## 0.0.6
 
 - TODO: Added video example
+
+## 0.0.7
+
+- TODO: Added Integration Test Cases for the Example App
