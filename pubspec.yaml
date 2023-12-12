@@ -1,6 +1,6 @@
 name: otp_input_editor
 description: otp_input_editor empowers users to effortlessly edit OTPs from any position within the input field With customizable features.
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/vidya-hub/otp_input_editor/blob/main/README.md
 repository: https://github.com/vidya-hub/otp_input_editor.git
 environment:

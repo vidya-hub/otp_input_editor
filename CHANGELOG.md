@@ -25,3 +25,7 @@
 ## 0.0.7
 
 - TODO: Added Integration Test Cases for the Example App
+
+## 0.0.8
+
+- TODO: Fixed ios backspace issue

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:otp_input_editor/src/otp_input_controller.dart';
@@ -171,6 +173,11 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
                               .requestFocus(focusNodes[index + 1]);
                         }
                         onChanged();
+                      }
+                      if (Platform.isIOS && value.isEmpty && index != 0) {
+                        onChanged();
+                        FocusScope.of(context)
+                            .requestFocus(focusNodes[index - 1]);
                       }
                       // End
                     },
