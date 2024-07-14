@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:otp_input_editor/src/otp_input_controller.dart';
 
 class OtpInputEditor extends StatefulWidget {
+  /// Constructor for OtpInputEditor with optional parameters
   const OtpInputEditor({
     super.key,
     this.otpLength = 4,
@@ -22,18 +23,43 @@ class OtpInputEditor extends StatefulWidget {
     this.obscureText = true,
   });
 
+  /// Number of OTP fields, default is 4
   final int otpLength;
+
+  /// Callback when OTP value changes
   final ValueChanged<String>? onOtpChanged;
+
+  /// Indicates if the entered OTP is invalid
   final bool invalid;
+
+  /// Background color for OTP text fields
   final Color? otpTextFieldBackgroundColor;
+
+  /// Box shadow for the OTP text fields
   final List<BoxShadow>? boxShadow;
+
+  /// Width of each OTP text field, default is 50
   final double fieldWidth;
+
+  /// Height of each OTP text field, default is 50
   final double fieldHeight;
+
+  /// Width of the cursor in OTP text fields, default is 3
   final double cursorWidth;
+
+  /// Height of the cursor in OTP text fields, default is 24
   final double cursorHeight;
+
+  /// Text style for the OTP input
   final TextStyle? textInputStyle;
+
+  /// Custom box decoration for the OTP text fields
   final BoxDecoration? boxDecoration;
+
+  /// Callback after initialization
   final Function(OtpInputController)? onInitialization;
+
+  /// Whether to obscure the text in OTP fields, default is true
   final bool obscureText;
 
   @override
@@ -41,10 +67,19 @@ class OtpInputEditor extends StatefulWidget {
 }
 
 class _OtpInputEditorState extends State<OtpInputEditor> {
+  /// Controllers for each OTP text field
   List<TextEditingController> controllers = [];
+
+  /// Temporary values for each OTP text field
   List<String> tempValues = [];
+
+  /// Focus nodes for each OTP text field
   List<FocusNode> focusNodes = [];
+
+  /// Raw focus nodes for keyboard listeners
   List<FocusNode> rawFocusNodes = [];
+
+  /// Controller for managing OTP input
   OtpInputController? _otpInputController;
 
   @override
@@ -106,11 +141,11 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
               width: widget.fieldWidth,
               height: widget.fieldHeight,
               child: Center(
-                child: RawKeyboardListener(
+                child: KeyboardListener(
                   focusNode: rawFocusNodes[index],
-                  onKey: (value) {
+                  onKeyEvent: (value) {
                     if (value.logicalKey.keyLabel == "Backspace" &&
-                        value.runtimeType.toString() == 'RawKeyDownEvent') {
+                        value.runtimeType.toString() == 'KeyUpEvent') {
                       if (controllers[index].text.isEmpty && index != 0) {
                         onChanged();
                         FocusScope.of(context)
@@ -196,6 +231,7 @@ class _OtpInputEditorState extends State<OtpInputEditor> {
     );
   }
 
+  /// Method to handle changes in the OTP input
   void onChanged() {
     String data = controllers.map((e) => e.text).join();
     if (widget.onOtpChanged != null) {

@@ -29,3 +29,7 @@
 ## 0.0.8
 
 - TODO: Fixed ios backspace issue
+
+## 0.0.9
+
+- TODO: Fixed version related Issues replaced `RawKeyboardListener` with `KeyboardListener`

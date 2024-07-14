@@ -143,7 +143,6 @@ class _OtpInputFieldState extends State<OtpInputField> {
         ),
       ],
       fieldWidth: 40.0,
-      fieldHeight: 40.0,
       cursorWidth: 1.5,
       textInputStyle: const TextStyle(
         fontSize: 20.0,
